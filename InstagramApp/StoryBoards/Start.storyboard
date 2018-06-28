@@ -31,7 +31,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="dcg-8v-vFl"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
@@ -53,8 +52,15 @@
                                         <state key="normal" title="Sign In">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="xUm-5Y-9aq" kind="presentation" id="o0n-e9-gOs"/>
+                                        </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="OC9-O7-kTF" secondAttribute="trailing" id="0Cc-98-Faa"/>
+                                    <constraint firstItem="OC9-O7-kTF" firstAttribute="leading" secondItem="WWq-Kn-SAZ" secondAttribute="leading" id="Jl0-O5-Tu8"/>
+                                </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1J-Tz-E2z">
                                 <rect key="frame" x="0.0" y="637" width="375" height="30"/>
@@ -86,10 +92,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pSI-tm-Dcw"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="OC9-O7-kTF" id="3qA-dW-KBJ"/>
+                        <outlet property="passwordTextField" destination="c4s-S5-xkt" id="bWL-ed-0Kn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1MQ-QX-w2E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-530.39999999999998" y="-24.7376311844078"/>
+            <point key="canvasLocation" x="68" y="-257"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="G36-55-b85">
@@ -147,6 +157,9 @@
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="xUm-5Y-9aq" kind="presentation" id="Qyo-hh-Hkv"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -172,13 +185,30 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="72k-x1-Aek"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="9Sh-kS-qf5" id="H7n-WB-kag"/>
+                        <outlet property="passwordTextField" destination="8iE-RG-liU" id="sNs-gO-XRo"/>
+                        <outlet property="profileImage" destination="4cS-pp-Emc" id="JUU-ke-3AT"/>
+                        <outlet property="usernameTextField" destination="bD6-BI-me3" id="jVz-AE-WYh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aeB-uW-6li" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="372" y="-25"/>
+            <point key="canvasLocation" x="68" y="667"/>
+        </scene>
+        <!--TabBarId-->
+        <scene sceneID="Pyq-kf-sj3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="TabBarId" id="xUm-5Y-9aq" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HwT-ZG-9Pw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1158" y="-26"/>
         </scene>
     </scenes>
     <resources>
         <image name="placeholderImg" width="1200" height="1200"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Qyo-hh-Hkv"/>
+    </inferredMetricsTieBreakers>
 </document>
