@@ -62,8 +62,14 @@
                                     <constraint firstItem="OC9-O7-kTF" firstAttribute="leading" secondItem="WWq-Kn-SAZ" secondAttribute="leading" id="Jl0-O5-Tu8"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtR-qj-vjO">
+                                <rect key="frame" x="121.5" y="110" width="131.5" height="58"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="36"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1J-Tz-E2z">
-                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="627" width="375" height="30"/>
                                 <state key="normal" title="Don't have an account?">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 </state>
@@ -71,12 +77,6 @@
                                     <segue destination="pEU-tI-L6T" kind="presentation" id="uOJ-i2-wCn"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtR-qj-vjO">
-                                <rect key="frame" x="121.5" y="110" width="131.5" height="58"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="36"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -85,6 +85,7 @@
                             <constraint firstItem="WWq-Kn-SAZ" firstAttribute="centerY" secondItem="Agq-q4-1zi" secondAttribute="centerY" id="Jp2-Ep-jh9"/>
                             <constraint firstItem="O1J-Tz-E2z" firstAttribute="bottom" secondItem="pSI-tm-Dcw" secondAttribute="bottom" id="MDr-E8-qwl"/>
                             <constraint firstItem="WWq-Kn-SAZ" firstAttribute="leading" secondItem="pSI-tm-Dcw" secondAttribute="leading" constant="20" id="V0p-uB-LEC"/>
+                            <constraint firstItem="pSI-tm-Dcw" firstAttribute="bottom" secondItem="O1J-Tz-E2z" secondAttribute="bottom" constant="10" id="Wny-vJ-wbs"/>
                             <constraint firstItem="O1J-Tz-E2z" firstAttribute="trailing" secondItem="pSI-tm-Dcw" secondAttribute="trailing" id="gUD-w6-vQx"/>
                             <constraint firstItem="pSI-tm-Dcw" firstAttribute="trailing" secondItem="WWq-Kn-SAZ" secondAttribute="trailing" constant="20" id="kPS-wu-NJ9"/>
                             <constraint firstItem="WWq-Kn-SAZ" firstAttribute="centerX" secondItem="Agq-q4-1zi" secondAttribute="centerX" id="qpi-bA-j97"/>
@@ -109,15 +110,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An7-Ur-HvR">
-                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
-                                <state key="normal" title="Already have an account? Sign In">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="dismiss_onClick:" destination="pEU-tI-L6T" eventType="touchUpInside" id="Ptu-hu-9uv"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="CIR-uD-kHO">
                                 <rect key="frame" x="20" y="238.5" width="335" height="190"/>
                                 <subviews>
@@ -158,7 +150,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="xUm-5Y-9aq" kind="presentation" id="Qyo-hh-Hkv"/>
+                                            <action selector="signUpBtn_TouchUpInside:" destination="pEU-tI-L6T" eventType="touchUpInside" id="ZPj-MM-DNv"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -170,6 +162,15 @@
                                     <constraint firstAttribute="width" constant="90" id="VIm-b1-V1f"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An7-Ur-HvR">
+                                <rect key="frame" x="0.0" y="627" width="375" height="30"/>
+                                <state key="normal" title="Already have an account? Sign In">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismiss_onClick:" destination="pEU-tI-L6T" eventType="touchUpInside" id="Ptu-hu-9uv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -179,6 +180,7 @@
                             <constraint firstItem="4cS-pp-Emc" firstAttribute="centerX" secondItem="e4s-tG-aWZ" secondAttribute="centerX" id="MnQ-W0-63G"/>
                             <constraint firstItem="72k-x1-Aek" firstAttribute="trailing" secondItem="An7-Ur-HvR" secondAttribute="trailing" id="Qhb-1g-lP1"/>
                             <constraint firstItem="4cS-pp-Emc" firstAttribute="top" secondItem="72k-x1-Aek" secondAttribute="top" constant="36" id="Xrx-wr-u0G"/>
+                            <constraint firstItem="72k-x1-Aek" firstAttribute="bottom" secondItem="An7-Ur-HvR" secondAttribute="bottom" constant="10" id="Ynd-rJ-K61"/>
                             <constraint firstItem="72k-x1-Aek" firstAttribute="bottom" secondItem="An7-Ur-HvR" secondAttribute="bottom" id="dci-ur-pNa"/>
                             <constraint firstItem="CIR-uD-kHO" firstAttribute="centerX" secondItem="e4s-tG-aWZ" secondAttribute="centerX" id="h0f-Na-13P"/>
                             <constraint firstItem="72k-x1-Aek" firstAttribute="trailing" secondItem="CIR-uD-kHO" secondAttribute="trailing" constant="20" id="z91-cX-Vk9"/>
@@ -208,7 +210,4 @@
     <resources>
         <image name="placeholderImg" width="1200" height="1200"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Qyo-hh-Hkv"/>
-    </inferredMetricsTieBreakers>
 </document>

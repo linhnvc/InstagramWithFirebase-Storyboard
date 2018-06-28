@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
 
 class SignUpViewController: UIViewController {
     
@@ -16,12 +19,23 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var profileImage: UIImageView!
     
+    var selectedImage: UIImage?
+    
+    @objc func handleSelectProfileImageView() {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        present(pickerController, animated: true, completion: nil)
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         profileImage.layer.cornerRadius = profileImage.frame.width / 2
         profileImage.clipsToBounds = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.handleSelectProfileImageView))
+        profileImage.addGestureRecognizer(tap)
+        profileImage.isUserInteractionEnabled = true
         
         usernameTextField.backgroundColor = UIColor.clear
         usernameTextField.tintColor = .white
@@ -63,20 +77,68 @@ class SignUpViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    @IBAction func signUpBtn_TouchUpInside(_ sender: Any) {
+        
+        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authDataResult, err) in
+            if err != nil {
+                print(err!.localizedDescription)
+                return
+            }
+            
+            let uid = authDataResult?.user.uid
+            
+            let storageRef = Storage.storage().reference(forURL: "gs://instagram-ac0dc.appspot.com").child("profile_image").child(uid!)
+            if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1) {
+                storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                    if error != nil {
+                        return
+                    }
 
-    /*
-    // MARK: - Navigation
+                    storageRef.downloadURL(completion: { (url, err) in
+                        guard let profileImageUrl = url?.absoluteString else {
+                            return
+                        }
+                        let username: String = self.usernameTextField.text!
+                        let email: String = self.emailTextField.text!
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+                        
+                        // thêm user vào database
+                        let ref = Database.database().reference()
+                        let usersReference = ref.child("users")
+                        //https://instagram-ac0dc.firebaseio.com/
+                        let newUserReference = usersReference.child(uid!)
+                        newUserReference.setValue(["username": username, "email": email, "profileImageUrl": profileImageUrl])
+                        
+                        
+                    })
+                })
+            }
+        }
     }
-    */
-
 }
+
+
+
+extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    // Xử lý khi chọn xong 1 bức ảnh trong thư viện ảnh:
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let img = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            selectedImage = img
+            profileImage.image = img
+        }
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
