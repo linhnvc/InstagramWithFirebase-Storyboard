@@ -18,6 +18,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var signUpButton: UIButton!
     
     var selectedImage: UIImage?
     
@@ -30,6 +31,7 @@ class SignUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "bg3")!)
         
         profileImage.layer.cornerRadius = profileImage.frame.width / 2
         profileImage.clipsToBounds = true
@@ -44,7 +46,7 @@ class SignUpViewController: UIViewController {
         
         // Vẽ thêm đường kẻ dưới Username
         let bottomLayer3 = CALayer()
-        bottomLayer3.frame = CGRect(x: 0, y: 29, width: usernameTextField.frame.width, height: 1)
+        bottomLayer3.frame = CGRect(x: 0, y: 29, width: usernameTextField.frame.width, height: 0.5)
         bottomLayer3.backgroundColor = UIColor(displayP3Red: 50/255, green: 50/255, blue: 50/255, alpha: 1).cgColor
         usernameTextField.layer.addSublayer(bottomLayer3)
         
@@ -55,7 +57,7 @@ class SignUpViewController: UIViewController {
         
         // Vẽ thêm đường kẻ dưới Email
         let bottomLayer = CALayer()
-        bottomLayer.frame = CGRect(x: 0, y: 29, width: emailTextField.frame.width, height: 1)
+        bottomLayer.frame = CGRect(x: 0, y: 29, width: emailTextField.frame.width, height: 0.5)
         bottomLayer.backgroundColor = UIColor(displayP3Red: 50/255, green: 50/255, blue: 50/255, alpha: 1).cgColor
         emailTextField.layer.addSublayer(bottomLayer)
         
@@ -67,11 +69,31 @@ class SignUpViewController: UIViewController {
         
         // Vẽ thêm đường kẻ dưới Password
         let bottomLayer1 = CALayer()
-        bottomLayer1.frame = CGRect(x: 0, y: 29, width: passwordTextField.frame.width, height: 1)
+        bottomLayer1.frame = CGRect(x: 0, y: 29, width: passwordTextField.frame.width, height: 0.5)
         bottomLayer1.backgroundColor = UIColor(displayP3Red: 50/255, green: 50/255, blue: 50/255, alpha: 1).cgColor
         passwordTextField.layer.addSublayer(bottomLayer1)
 
+        handleTextField()
+        
     }
+    
+    func handleTextField() {
+        usernameTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: .editingChanged)
+
+    }
+    
+    @objc func textFieldDidChange() {
+        guard let username = usernameTextField.text, !username.isEmpty, let email = emailTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty else {
+            signUpButton.setTitleColor(UIColor.black, for: .normal)
+            signUpButton.isEnabled = false
+            return
+        }
+        signUpButton.setTitleColor(UIColor.white, for: .normal)
+        signUpButton.isEnabled = true
+    }
+    
 
     @IBAction func dismiss_onClick(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -102,20 +124,22 @@ class SignUpViewController: UIViewController {
                         let username: String = self.usernameTextField.text!
                         let email: String = self.emailTextField.text!
 
-                        
-                        // thêm user vào database
-                        let ref = Database.database().reference()
-                        let usersReference = ref.child("users")
-                        //https://instagram-ac0dc.firebaseio.com/
-                        let newUserReference = usersReference.child(uid!)
-                        newUserReference.setValue(["username": username, "email": email, "profileImageUrl": profileImageUrl])
-                        
+                        self.setUserInformation(profileImageUrl: profileImageUrl, username: username, email: email, uid: uid!)
                         
                     })
                 })
             }
         }
     }
+    
+    func setUserInformation(profileImageUrl: String, username: String, email: String, uid: String) {
+        // thêm user vào database
+        let ref = Database.database().reference()
+        let usersReference = ref.child("users")
+        let newUserReference = usersReference.child(uid)
+        newUserReference.setValue(["username": username, "email": email, "profileImageUrl": profileImageUrl])
+    }
+    
 }
 
 

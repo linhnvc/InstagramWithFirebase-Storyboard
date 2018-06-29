@@ -15,6 +15,7 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "bg3")!)
 
         emailTextField.backgroundColor = UIColor.clear
         emailTextField.tintColor = .white
@@ -23,7 +24,7 @@ class SignInViewController: UIViewController {
         
         // Vẽ thêm đường kẻ dưới Email
         let bottomLayer = CALayer()
-        bottomLayer.frame = CGRect(x: 0, y: 29, width: emailTextField.frame.width, height: 1)
+        bottomLayer.frame = CGRect(x: 0, y: 29, width: emailTextField.frame.width, height: 0.5)
         bottomLayer.backgroundColor = UIColor(displayP3Red: 50/255, green: 50/255, blue: 50/255, alpha: 1).cgColor
         emailTextField.layer.addSublayer(bottomLayer)
         
@@ -35,7 +36,7 @@ class SignInViewController: UIViewController {
         
         // Vẽ thêm đường kẻ dưới Password
         let bottomLayer1 = CALayer()
-        bottomLayer1.frame = CGRect(x: 0, y: 29, width: passwordTextField.frame.width, height: 1)
+        bottomLayer1.frame = CGRect(x: 0, y: 29, width: passwordTextField.frame.width, height: 0.5)
         bottomLayer1.backgroundColor = UIColor(displayP3Red: 50/255, green: 50/255, blue: 50/255, alpha: 1).cgColor
         passwordTextField.layer.addSublayer(bottomLayer1)
         
