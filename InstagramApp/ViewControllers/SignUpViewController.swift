@@ -73,8 +73,13 @@ class SignUpViewController: UIViewController {
         bottomLayer1.backgroundColor = UIColor(displayP3Red: 50/255, green: 50/255, blue: 50/255, alpha: 1).cgColor
         passwordTextField.layer.addSublayer(bottomLayer1)
 
+        signUpButton.isEnabled = false
         handleTextField()
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     func handleTextField() {
@@ -101,44 +106,21 @@ class SignUpViewController: UIViewController {
     
     
     @IBAction func signUpBtn_TouchUpInside(_ sender: Any) {
-        
-        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authDataResult, err) in
-            if err != nil {
-                print(err!.localizedDescription)
-                return
-            }
-            
-            let uid = authDataResult?.user.uid
-            
-            let storageRef = Storage.storage().reference(forURL: "gs://instagram-ac0dc.appspot.com").child("profile_image").child(uid!)
-            if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1) {
-                storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
-                    if error != nil {
-                        return
-                    }
-
-                    storageRef.downloadURL(completion: { (url, err) in
-                        guard let profileImageUrl = url?.absoluteString else {
-                            return
-                        }
-                        let username: String = self.usernameTextField.text!
-                        let email: String = self.emailTextField.text!
-
-                        self.setUserInformation(profileImageUrl: profileImageUrl, username: username, email: email, uid: uid!)
-                        
-                    })
-                })
-            }
+        view.endEditing(true)
+        ProgressHUD.show("Waiting...", interaction: false)
+        if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1) {
+            AuthService.signUp(username: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, imageData: imageData, onSuccess: {
+                ProgressHUD.showSuccess("Success")
+                self.performSegue(withIdentifier: "signUpToTabbarVC", sender: nil)
+                }, onError: { (errStr) in
+                    ProgressHUD.showError(errStr)
+            })
+        } else {
+            ProgressHUD.showError("Profile image can not empty")
         }
     }
     
-    func setUserInformation(profileImageUrl: String, username: String, email: String, uid: String) {
-        // thêm user vào database
-        let ref = Database.database().reference()
-        let usersReference = ref.child("users")
-        let newUserReference = usersReference.child(uid)
-        newUserReference.setValue(["username": username, "email": email, "profileImageUrl": profileImageUrl])
-    }
+    
     
 }
 

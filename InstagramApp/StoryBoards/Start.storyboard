@@ -13,7 +13,7 @@
         <!--Sign In View Controller-->
         <scene sceneID="2KX-Pj-4BC">
             <objects>
-                <viewController id="fem-2G-KKf" customClass="SignInViewController" customModule="InstagramApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" id="fem-2G-KKf" customClass="SignInViewController" customModule="InstagramApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Agq-q4-1zi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,7 +48,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="xUm-5Y-9aq" kind="presentation" id="o0n-e9-gOs"/>
+                                            <action selector="signInButton_TouchUpInside:" destination="fem-2G-KKf" eventType="touchUpInside" id="2eE-RK-LnR"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -87,6 +87,8 @@
                     <connections>
                         <outlet property="emailTextField" destination="OC9-O7-kTF" id="3qA-dW-KBJ"/>
                         <outlet property="passwordTextField" destination="c4s-S5-xkt" id="bWL-ed-0Kn"/>
+                        <outlet property="signInButton" destination="1dv-gj-UzU" id="ttm-NH-Q7u"/>
+                        <segue destination="xUm-5Y-9aq" kind="presentation" identifier="signInToTabbarVC" id="qFy-La-ey5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1MQ-QX-w2E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -183,6 +185,7 @@
                         <outlet property="profileImage" destination="4cS-pp-Emc" id="JUU-ke-3AT"/>
                         <outlet property="signUpButton" destination="U8E-uN-346" id="amH-Di-z22"/>
                         <outlet property="usernameTextField" destination="bD6-BI-me3" id="jVz-AE-WYh"/>
+                        <segue destination="xUm-5Y-9aq" kind="presentation" identifier="signUpToTabbarVC" id="aVX-DT-rZ6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aeB-uW-6li" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -195,11 +198,14 @@
                 <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="TabBarId" id="xUm-5Y-9aq" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HwT-ZG-9Pw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1158" y="-26"/>
+            <point key="canvasLocation" x="940" y="-103"/>
         </scene>
     </scenes>
     <resources>
         <image name="instagramText" width="177" height="50"/>
         <image name="placeholderImg" width="1200" height="1200"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="qFy-La-ey5"/>
+    </inferredMetricsTieBreakers>
 </document>

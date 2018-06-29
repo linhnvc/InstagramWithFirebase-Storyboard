@@ -17,14 +17,72 @@
                     <view key="view" contentMode="scaleToFill" id="3JX-dk-ty8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NV7-NZ-mWZ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="100"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="BwB-lb-8na">
+                                        <rect key="frame" x="8" y="10" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="NtH-Fz-dh7"/>
+                                            <constraint firstAttribute="height" constant="80" id="O25-A2-mwM"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eaf-AB-SEH">
+                                        <rect key="frame" x="96" y="10" width="271" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="eaf-AB-SEH" firstAttribute="top" secondItem="NV7-NZ-mWZ" secondAttribute="top" constant="10" id="7Tf-MM-M1B"/>
+                                    <constraint firstAttribute="bottom" secondItem="BwB-lb-8na" secondAttribute="bottom" constant="10" id="AYu-mI-DIX"/>
+                                    <constraint firstItem="BwB-lb-8na" firstAttribute="leading" secondItem="NV7-NZ-mWZ" secondAttribute="leading" constant="8" id="FVV-36-8Dy"/>
+                                    <constraint firstItem="BwB-lb-8na" firstAttribute="top" secondItem="NV7-NZ-mWZ" secondAttribute="top" constant="10" id="HMY-UB-biP"/>
+                                    <constraint firstAttribute="height" constant="100" id="I0L-d2-JKR"/>
+                                    <constraint firstAttribute="trailing" secondItem="eaf-AB-SEH" secondAttribute="trailing" constant="8" id="TBh-1L-Rjk"/>
+                                    <constraint firstItem="eaf-AB-SEH" firstAttribute="leading" secondItem="BwB-lb-8na" secondAttribute="trailing" constant="8" id="Vx3-0c-V6W"/>
+                                    <constraint firstAttribute="bottom" secondItem="eaf-AB-SEH" secondAttribute="bottom" constant="10" id="cAu-yj-ENN"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmy-5c-LaS">
+                                <rect key="frame" x="8" y="619" width="359" height="40"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="UTV-tI-gIV"/>
+                                </constraints>
+                                <state key="normal" title="Share">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareButton_TouchUpInside:" destination="Y6v-wu-LW3" eventType="touchUpInside" id="7Hv-ac-XV7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gmy-5c-LaS" firstAttribute="leading" secondItem="6RN-sP-9Si" secondAttribute="leading" constant="8" id="5dz-fV-r7m"/>
+                            <constraint firstItem="6RN-sP-9Si" firstAttribute="bottom" secondItem="gmy-5c-LaS" secondAttribute="bottom" constant="8" id="8aW-Jv-C6s"/>
+                            <constraint firstItem="NV7-NZ-mWZ" firstAttribute="top" secondItem="6RN-sP-9Si" secondAttribute="top" id="DQt-ze-LJs"/>
+                            <constraint firstItem="NV7-NZ-mWZ" firstAttribute="leading" secondItem="6RN-sP-9Si" secondAttribute="leading" id="fUs-A5-1X6"/>
+                            <constraint firstItem="NV7-NZ-mWZ" firstAttribute="trailing" secondItem="6RN-sP-9Si" secondAttribute="trailing" id="jeu-gV-ot4"/>
+                            <constraint firstItem="6RN-sP-9Si" firstAttribute="trailing" secondItem="gmy-5c-LaS" secondAttribute="trailing" constant="8" id="zod-1v-XFs"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6RN-sP-9Si"/>
                     </view>
                     <navigationItem key="navigationItem" title="Camera" id="KDY-Ya-AQf"/>
+                    <connections>
+                        <outlet property="captionTextView" destination="eaf-AB-SEH" id="Uqq-ie-vb9"/>
+                        <outlet property="photo" destination="BwB-lb-8na" id="yt9-0j-dT7"/>
+                        <outlet property="shareButton" destination="gmy-5c-LaS" id="uIc-dM-F9d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P5a-4t-aAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3908" y="-1108"/>
+            <point key="canvasLocation" x="3908" y="-1108.6956521739132"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Oqy-Ia-not">
@@ -50,5 +108,6 @@
     </scenes>
     <resources>
         <image name="inPost" width="35" height="35"/>
+        <image name="placeholderPhoto" width="250" height="250"/>
     </resources>
 </document>
