@@ -14,6 +14,7 @@ class CameraViewController: UIViewController {
 
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var captionTextView: UITextView!
+    @IBOutlet weak var removeButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIButton!
     var selectedImage: UIImage?
     
@@ -24,6 +25,29 @@ class CameraViewController: UIViewController {
         photo.addGestureRecognizer(tap)
         photo.isUserInteractionEnabled = true
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        handlePost()
+    }
+    
+    func handlePost() {
+        if selectedImage != nil {
+            shareButton.isEnabled = true
+            removeButton.isEnabled = true
+            shareButton.backgroundColor = .blue
+            shareButton.setTitleColor(UIColor.white, for: .normal)
+        } else {
+            shareButton.isEnabled = false
+            removeButton.isEnabled = false
+            shareButton.backgroundColor = UIColor.lightGray
+        }
+    }
+    
+    // Ấn ngoài để ẩn bàn phím
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     @objc func handleSelectPhoto() {
@@ -55,19 +79,32 @@ class CameraViewController: UIViewController {
             ProgressHUD.showError("Profile image can not empty")
         }
     }
+    @IBAction func remove_TouchUpInside(_ sender: Any) {
+        clean()
+        handlePost()
+    }
     
     func sendDataToDatabase(photoUrl: String) {
         let ref = Database.database().reference()
         let postsReference = ref.child("posts")
         let newPostId = postsReference.childByAutoId().key
         let newPostReference = postsReference.child(newPostId)
-        newPostReference.setValue(["photoUrl": photoUrl]) { (error, ref) in
+        newPostReference.setValue(["photoUrl": photoUrl, "caption": captionTextView.text!]) { (error, ref) in
             if error != nil {
                 ProgressHUD.showError(error?.localizedDescription)
                 return
             }
             ProgressHUD.showSuccess("Success")
+            self.clean()
+            // Chuyển về màn hình Home:
+            self.tabBarController?.selectedIndex = 0
         }
+    }
+    
+    func clean() {
+        self.captionTextView.text = ""
+        self.photo.image = UIImage(named: "placeholderPhoto")
+        self.selectedImage = nil
     }
     
 }

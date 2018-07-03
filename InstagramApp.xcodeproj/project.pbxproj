@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F44C66520E52532004C9C33 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F44C66420E52532004C9C33 /* GoogleService-Info.plist */; };
+		2FBABA5120EA6A8E00CFD3B7 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBABA5020EA6A8E00CFD3B7 /* Post.swift */; };
 		2FD153DD20E3E5A400CFDAF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD153DC20E3E5A400CFDAF4 /* AppDelegate.swift */; };
 		2FD153E420E3E5A400CFDAF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FD153E320E3E5A400CFDAF4 /* Assets.xcassets */; };
 		2FD153E720E3E5A400CFDAF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FD153E520E3E5A400CFDAF4 /* LaunchScreen.storyboard */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		2F44C66420E52532004C9C33 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2FBABA5020EA6A8E00CFD3B7 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		2FD153D920E3E5A400CFDAF4 /* InstagramApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FD153DC20E3E5A400CFDAF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FD153E320E3E5A400CFDAF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FBABA4F20EA6A2600CFD3B7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2FBABA5020EA6A8E00CFD3B7 /* Post.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2FD153D020E3E5A400CFDAF4 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 		2FD153DB20E3E5A400CFDAF4 /* InstagramApp */ = {
 			isa = PBXGroup;
 			children = (
+				2FBABA4F20EA6A2600CFD3B7 /* Model */,
 				2FD153DC20E3E5A400CFDAF4 /* AppDelegate.swift */,
 				2FD96F9A20E6254D00BF1128 /* AuthService.swift */,
 				2FD96F9C20E6375600BF1128 /* Config.swift */,
@@ -290,6 +301,7 @@
 				2FD82AFE20E4955400A25E80 /* DiscoverViewController.swift in Sources */,
 				2FD153F320E3EFEE00CFDAF4 /* SignUpViewController.swift in Sources */,
 				2FD153F120E3E96700CFDAF4 /* SignInViewController.swift in Sources */,
+				2FBABA5120EA6A8E00CFD3B7 /* Post.swift in Sources */,
 				2FD96F9B20E6254D00BF1128 /* AuthService.swift in Sources */,
 				2FD153DD20E3E5A400CFDAF4 /* AppDelegate.swift in Sources */,
 				2FD82B0220E4959100A25E80 /* ActivityViewController.swift in Sources */,
